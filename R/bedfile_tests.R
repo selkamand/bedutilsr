@@ -135,16 +135,16 @@ file_is_bed <- function(filepath){
 #' @return (logical)
 #' @export
 #'
-file_is_valid_bed <- function(filepath, genomefile){
+file_is_valid_bed <- function(filepath, genomefile, warn=TRUE){
   utilitybelt::assert_that(assertthat::is.string(filepath))
   utilitybelt::assert_that(file.exists(filepath))
   utilitybelt::assert_that(assertthat::is.string(genomefile))
   utilitybelt::assert_that(file.exists(genomefile))
   #browser()
   file_is_bed(filepath) %>%
-    if_true_then_run(bed_chromosomes_match_genome_file(bedfile_path = filepath, genome = genomefile, warn = FALSE)) %>%
-    if_true_then_run(bed_is_sorted(bedfile_path = filepath, genome = genomefile, warn = FALSE)) %>%
-    if_true_then_run(!bed_intervals_overlap(bedfile_path = filepath, header = file_has_header(filepath))) %>%
+    if_true_then_run(bed_chromosomes_match_genome_file(bedfile_path = filepath, genome = genomefile, warn = warn)) %>%
+    if_true_then_run(bed_is_sorted(bedfile_path = filepath, genome = genomefile, warn = warn)) %>%
+    if_true_then_run(!bed_intervals_overlap(bedfile_path = filepath, header = file_has_header(filepath), warn = warn)) %>%
     return()
 }
 
@@ -157,14 +157,14 @@ file_is_valid_bed <- function(filepath, genomefile){
 #' @export
 #'
 #' @examples
-file_is_valid_bed_vectorized <- function(filepaths, genomefile){
+file_is_valid_bed_vectorized <- function(filepaths, genomefile, warn=TRUE){
   #browser()
   utilitybelt::assert_that(is.character(filepaths))
   utilitybelt::assert_that(utilitybelt::files_exist_all(filepaths))
   utilitybelt::assert_that(assertthat::is.string(genomefile))
   utilitybelt::assert_that(file.exists(genomefile))
 
-  file_is_valid.vector <- purrr::map_lgl(filepaths, .f = function(filepath) { file_is_valid_bed(filepath = filepath, genomefile = genomefile) })
+  file_is_valid.vector <- purrr::map_lgl(filepaths, .f = function(filepath) { file_is_valid_bed(filepath = filepath, genomefile = genomefile, warn=warn) })
   utilitybelt::assert_that(length(file_is_valid.vector) == length(filepaths))
   return(file_is_valid.vector)
 }
