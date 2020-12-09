@@ -23,16 +23,16 @@ bed_is_sorted <- function(bedfile_path, genome, header = NULL, warn=TRUE) {
   }
 
   #Read data
-  bed.df <- vroom::vroom(bedfile_path, delim = "\t", col_names = c("chr", "start", "end"), col_select = 1:2, skip = as.integer(header)) %>% suppressMessages()
+  bed.df <- vroom::vroom(bedfile_path, delim = "\t", col_names = c("chr", "start", "end"), col_select = 1:2, col_types = readr::cols(chr=readr::col_character()), skip = as.integer(header)) %>% suppressMessages()
   chromosomes.v <- vroom::vroom(genome, delim = "\t", col_names = c("chr"), col_select = 1)[[1]] %>% suppressMessages()
 
   #Check chromosome order
   chrom_in_order_observed.v <- unique(bed.df$chr)
   order_of_chrom.v <- sapply(chrom_in_order_observed.v, function(x) {
-    utilitybelt::assert_that(x %in% chromosomes.v, msg = utilitybelt::fmterror(function_name,"Bed file contains chromosome ", x, " which is not present in the genome file: ", genome))
+    # utilitybelt::assert_that(x %in% chromosomes.v, msg = utilitybelt::fmterror(function_name,"Bed file contains chromosome ", x, " which is not present in the genome file: ", genome))
     return(which(chromosomes.v==x))
     } )
-
+  #browser()
   chromosomes_are_sorted <- !is.unsorted(order_of_chrom.v)
   if(chromosomes_are_sorted == FALSE){
     if (warn) message(utilitybelt::fmtwarning(function_name,"Bed file: ", bedfile_path, " is not sorted in accordance with genome file: ", genome, ". I would highly recommend running 'bedtools sort -i <bed> -g <genomefile>' before running analysis"))
