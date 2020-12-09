@@ -1,0 +1,5 @@
+1	300	550	interval1
+1	550	820	interval2
+1	5000	5100	interval3
+5	6000	8100	interval4
+6	5000	5100	interval5

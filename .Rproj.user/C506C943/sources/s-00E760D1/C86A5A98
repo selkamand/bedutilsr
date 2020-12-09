@@ -1,0 +1,26 @@
+{
+    "id": "C86A5A98",
+    "path": "~/projects/r_packages/bedutilsr/tests/testthat/test-basicbedchecks.R",
+    "project_path": "tests/testthat/test-basicbedchecks.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1607536559531.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "59,20",
+        "scrollLine": "38"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1607538976,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1607538976622,
+    "read_only": false,
+    "read_only_alternatives": []
+}
