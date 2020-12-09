@@ -156,7 +156,6 @@ file_is_valid_bed <- function(filepath, genomefile, warn=TRUE){
 #' @return
 #' @export
 #'
-#' @examples
 file_is_valid_bed_vectorized <- function(filepaths, genomefile, warn=TRUE){
   #browser()
   utilitybelt::assert_that(is.character(filepaths))
@@ -178,7 +177,6 @@ file_is_valid_bed_vectorized <- function(filepaths, genomefile, warn=TRUE){
 #' @return
 #' @export
 #'
-#' @examples
 file_has_header <- function(filepath){
   utilitybelt::assert_that(assertthat::is.string(filepath))
   utilitybelt::assert_that(file.exists(filepath))

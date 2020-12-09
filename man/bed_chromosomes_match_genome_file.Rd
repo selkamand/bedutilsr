@@ -4,7 +4,12 @@
 \alias{bed_chromosomes_match_genome_file}
 \title{Bedfile chromosome correctness}
 \usage{
-bed_chromosomes_match_genome_file(bedfile_path, genome, warn = TRUE)
+bed_chromosomes_match_genome_file(
+  bedfile_path,
+  genome,
+  header = NULL,
+  warn = TRUE
+)
 }
 \arguments{
 \item{bedfile_path}{path to bed file}

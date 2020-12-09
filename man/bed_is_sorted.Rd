@@ -4,7 +4,7 @@
 \alias{bed_is_sorted}
 \title{Is Bedfile Sorted?}
 \usage{
-bed_is_sorted(bedfile_path, genome, warn = TRUE)
+bed_is_sorted(bedfile_path, genome, header = NULL, warn = TRUE)
 }
 \arguments{
 \item{bedfile_path}{path to bed file}
